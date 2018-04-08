@@ -1,0 +1,190 @@
+@mixin mobile_size {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet_size {
+  @media (min-width: 768px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop_size {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+html, body, div {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+}
+
+.header {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  @include tablet_size {
+    height: 60%;
+  }
+
+  @include mobile_size {
+    height: 80%;
+  }
+
+  overflow: hidden;
+
+  -webkit-transform-origin: 0;
+  transform-origin: 0;
+  -webkit-transform: skewY(-12deg);
+  transform: skewY(-12deg);
+
+  background: -webkit-linear-gradient(150deg, #53f 15%, #05d5ff 70%, #a6ffcb 94%);
+  background: linear-gradient(150deg, #53f 15%, #05d5ff 70%, #a6ffcb 94%);
+
+}
+
+.topbar {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  height: 50px;
+  width: 80%;
+  @include mobile_size {
+    width: calc(100% - 20px);
+    left: 10px;
+  }
+
+  a {
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+
+    &.login_btn {
+      position: absolute;
+      right: 0;
+    }
+  }
+
+}
+
+.placeholder {
+  display: block;
+  width: 100%;
+  height: 80px;
+  background-color: transparent;
+}
+
+.slogan {
+  width: 50%;
+  margin-left: 10%;
+  @include mobile_size {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  color: white;
+  h2 {
+    font-weight: bolder;
+    margin-top: 0;
+  }
+
+  p {
+    font-weight: normal;
+    line-height: 35px;
+
+    @include mobile_size {
+      line-height: 22px;
+    }
+
+    &:nth-of-type(2) {
+      font-size: 1.1em;
+    }
+
+    &:nth-of-type(3) {
+      font-size: 1.3em;
+    }
+
+    &:nth-of-type(4) {
+      font-size: 1.5em;
+    }
+  }
+
+}
+
+.demo-show {
+  position: absolute;
+
+  -webkit-transform-origin: 0;
+  transform-origin: 0;
+  -webkit-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+
+  overflow: hidden;
+  width: 50%;
+  left: 50%;
+  @include desktop_size {
+    top: 15%;
+  }
+  @include tablet_size {
+    top: 30%;
+  }
+
+  @include mobile_size {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+
+    width: 90%;
+    left: 5%;
+  }
+
+  .demo-safari {
+    width: 80%;
+  }
+
+  .demo-iphone {
+    width: 25%;
+  }
+
+  .demo-ipad {
+    width: 70%;
+  }
+}
+
+.register_btn {
+  display: inline-block;
+  padding: 1.2em 2em;
+  margin: 5px 0 8px 0;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+
+  color: white;
+  font-weight: bolder;
+  background: #3ecf8e;
+
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .1);
+
+  &:hover {
+    -webkit-transform: translateY(-1px);
+    transform: translateY(-1px);
+  }
+}
