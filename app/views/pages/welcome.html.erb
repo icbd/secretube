@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Secretube 加密通路</title>
+  <title>Secretube</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= stylesheet_link_tag 'welcome', media: 'all' %>
 </head>
@@ -12,17 +12,17 @@
 
 <div class="topbar">
   <a href="/" class="home_btn">Secretube</a>
-  <a href="/login" class="login_btn">Login</a>
+  <a href="/login" class="login_btn"><%= t("login") %></a>
 </div>
 <div class="placeholder"></div>
 <div class="slogan">
-  <h2>Secretube is a secrete tube. </h2>
+  <h2><%= t(".slogan_h2") %></h2>
 
-  <p>No Client Limit</p>
-  <p>No Traffic Limit</p>
-  <p>Per-second Billing</p>
+  <p><%= t(".slogan_p1") %></p>
+  <p><%= t(".slogan_p2") %></p>
+  <p><%= t(".slogan_p3") %></p>
 
-  <a href="#" class="register_btn">CREATE ACCOUNT</a>
+  <a href="#" class="register_btn"><%= t(".create_account") %></a>
 </div>
 
 <div class="demo-show">

@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  root "pages#welcome", as: "welcome"
+  # I18n locale
+  scope '(:locale)' do
 
-  get 'pages/welcome'
+    root "pages#welcome", as: "welcome"
 
-  get 'pages/helper'
+    get 'pages/welcome'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    get 'pages/helper'
+
+  end
 end

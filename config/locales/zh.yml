@@ -1,0 +1,10 @@
+zh:
+  login: "登录"
+
+  pages:
+    welcome:
+      slogan_h2: "Secretube 是一个加密信道."
+      slogan_p1: "无客户端限制"
+      slogan_p2: "无流量限制"
+      slogan_p3: "按秒计费"
+      create_account: "注册体验"
