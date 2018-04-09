@@ -62,9 +62,16 @@ body {
 .topbar {
   position: absolute;
   top: 0;
-  left: 10%;
   height: 50px;
-  width: 80%;
+
+  width: 60%;
+  left: 20%;
+
+  @include tablet_size {
+    width: 80%;
+    left: 10%;
+  }
+
   @include mobile_size {
     width: calc(100% - 20px);
     left: 10px;
@@ -95,7 +102,12 @@ body {
 
 .slogan {
   width: 50%;
-  margin-left: 10%;
+  margin-left: 20%;
+
+  @include tablet_size {
+    margin-left: 10%;
+  }
+
   @include mobile_size {
     width: 80%;
     margin: 0 auto;
@@ -104,7 +116,12 @@ body {
   color: white;
   h2 {
     font-weight: bolder;
-    margin-top: 0;
+    margin-top: 100px;
+
+    @include mobile_size {
+      margin-top: 0;
+    }
+
   }
 
   p {
