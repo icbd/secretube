@@ -1,4 +1,4 @@
-<% if object.errors.messages.has_key?(key) %>
+<% if object.try(:errors).try(:messages).try(:has_key?, key) %>
     <% object.errors.messages[key].each do |msg| %>
         <p class="error-alert">
           <% # english use default message, others use i18n %>
