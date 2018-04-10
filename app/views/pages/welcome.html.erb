@@ -13,7 +13,13 @@
 
 <div class="topbar">
   <%= link_to "Secretube", welcome_path, class: "home_btn" %>
-  <%= link_to t("login"), '#', class: "login_btn" %>
+
+  <% if logged_in? %>
+      <%= link_to current_user.email, user_path(current_user), class: "login_btn" %>
+  <% else %>
+      <%= link_to t("login"), login_path, class: "login_btn" %>
+  <% end %>
+
 </div>
 <div class="placeholder"></div>
 
@@ -24,7 +30,12 @@
   <p><%= t(".slogan_p2") %></p>
   <p><%= t(".slogan_p3") %></p>
 
-  <%= link_to t("create_account"), signup_path, class: "register_btn" %>
+  <% if logged_in? %>
+      <%= link_to t("my_account"), user_path(current_user), class: "register_btn" %>
+  <% else %>
+      <%= link_to t("create_account"), signup_path, class: "register_btn" %>
+  <% end %>
+
 </div>
 
 <div class="demo-show">

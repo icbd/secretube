@@ -1,0 +1,14 @@
+<%= form_for(@user, url: login_path, method: :post, :html => {clas: "login"}) do |f| %>
+
+    <p class="logotext h1">Secretube</p>
+
+    <%= render 'shared/error_hint', object: @user, key: :email %>
+    <%= f.label :email, class: "sr-only" %>
+    <%= f.text_field :email, required: "required", autofocus: "autofocus", class: "form-control", placeholder: "Email" %>
+
+    <%= render 'shared/error_hint', object: @user, key: :password %>
+    <%= f.label :password, class: "sr-only" %>
+    <%= f.password_field :password, required: "required", class: "form-control", placeholder: t("password") %>
+
+    <%= f.submit t("login"), class: "btn btn-lg btn-primary btn-block" %>
+<% end %>

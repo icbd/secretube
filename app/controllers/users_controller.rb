@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "Welcome 🎉"
+      log_in @user
       redirect_to @user
     else
       render :new, layout: "signup_login"

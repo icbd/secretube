@@ -2,3 +2,4 @@
 
 one:
   email: hello233world+one@gmail.com
+  password_digest: <%= calc_hash('P@ssw0rd') %>

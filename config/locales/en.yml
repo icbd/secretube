@@ -3,6 +3,9 @@ en:
   password: "Password"
   password_confirmation: "Password Again"
   create_account: "CREATE ACCOUNT"
+  my_account: "My Account"
+  email_not_found: "Not Found"
+  wrong_password: "Wrong"
 
   pages:
     welcome:
