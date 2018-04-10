@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
 
         logger.error flash[:notie]
       end
+    else
+      I18n.locale = :en
     end
   end
 end

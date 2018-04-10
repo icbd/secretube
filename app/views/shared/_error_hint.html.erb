@@ -1,0 +1,8 @@
+<% if object.errors.messages.has_key?(key) %>
+    <% object.errors.messages[key].each do |msg| %>
+        <p class="error-alert">
+          <% # english use default message, others use i18n %>
+          <%= "#{key}" if I18n.locale == :en %> <%= msg %>
+        </p>
+    <% end %>
+<% end %>

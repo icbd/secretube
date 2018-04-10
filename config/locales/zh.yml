@@ -12,3 +12,17 @@ zh:
       slogan_p2: "无流量限制"
       slogan_p3: "按秒计费"
 
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: "Email 格式有误"
+              taken: "该 Email 已注册 "
+            password:
+              blank: "密码不得为空"
+              too_long: "密码过长"
+            password_confirmation:
+              confirmation:  "请确认密码"
