@@ -1,5 +1,9 @@
 zh:
   login: "登录"
+  password: "密码"
+  password_confirmation: "密码确认"
+  create_account: "注册体验"
+
 
   pages:
     welcome:
@@ -7,4 +11,4 @@ zh:
       slogan_p1: "无客户端限制"
       slogan_p2: "无流量限制"
       slogan_p3: "按秒计费"
-      create_account: "注册体验"
+

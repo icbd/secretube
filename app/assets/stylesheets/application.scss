@@ -1,8 +1,10 @@
-/*
- *= require_tree .
- *= stub "welcome"
- *= require_self
- */
-
-
+@import "global";
 @import "bootstrap";
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}

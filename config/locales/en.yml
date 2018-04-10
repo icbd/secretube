@@ -1,5 +1,8 @@
 en:
   login: "Login"
+  password: "Password"
+  password_confirmation: "Password Again"
+  create_account: "CREATE ACCOUNT"
 
   pages:
     welcome:
@@ -7,4 +10,4 @@ en:
       slogan_p1: "No Client Limit"
       slogan_p2: "No Traffic Limit"
       slogan_p3: "Per-second Billing"
-      create_account: "CREATE ACCOUNT"
+

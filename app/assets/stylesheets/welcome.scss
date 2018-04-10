@@ -1,3 +1,4 @@
+// precompile separately
 @mixin mobile_size {
   @media (max-width: 767px) {
     @content;

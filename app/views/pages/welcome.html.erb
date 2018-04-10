@@ -12,10 +12,11 @@
 <div class="header"></div>
 
 <div class="topbar">
-  <a href="/" class="home_btn">Secretube</a>
-  <a href="/login" class="login_btn"><%= t("login") %></a>
+  <%= link_to "Secretube", welcome_path, class: "home_btn" %>
+  <%= link_to t("login"), '#', class: "login_btn" %>
 </div>
 <div class="placeholder"></div>
+
 <div class="slogan">
   <h2><%= t(".slogan_h2") %></h2>
 
@@ -23,7 +24,7 @@
   <p><%= t(".slogan_p2") %></p>
   <p><%= t(".slogan_p3") %></p>
 
-  <a href="#" class="register_btn"><%= t(".create_account") %></a>
+  <%= link_to t("create_account"), signup_path, class: "register_btn" %>
 </div>
 
 <div class="demo-show">
@@ -31,7 +32,5 @@
   <%= image_tag("welcome/iphone.png", class: "demo-iphone") %>
   <%= image_tag("welcome/ipad.png", class: "demo-ipad") %>
 </div>
-
-
 </body>
 </html>
