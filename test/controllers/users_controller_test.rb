@@ -18,10 +18,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       }
     }
 
+    assert_redirected_to dashboard_url
     follow_redirect!
-
-    assert_template 'users/show'
-
   end
 
 end

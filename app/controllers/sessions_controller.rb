@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :must_not_logged_in, except: [:destroy]
+  before_action :must_logged_in, only: [:destroy]
+
   def new
     @user = User.new
     render layout: "signup_login"
@@ -9,7 +12,7 @@ class SessionsController < ApplicationController
     if @user
       if @user.authenticate(params[:user][:password])
         log_in @user
-        redirect_to @user
+        redirect_to dashboard_url
         return
       else
         @user.errors.add(:password, t("wrong_password"))

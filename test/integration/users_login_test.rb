@@ -16,10 +16,9 @@ class UserLoginTest < ActionDispatch::IntegrationTest
         }
     }
 
-    assert_redirected_to user_path(@user)
+    assert_redirected_to dashboard_url
     follow_redirect!
 
-    assert_template 'users/show'
     assert_not session[:user_id].nil?
 
     delete logout_url

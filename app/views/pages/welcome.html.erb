@@ -15,7 +15,7 @@
   <%= link_to "Secretube", welcome_path, class: "home_btn" %>
 
   <% if logged_in? %>
-      <%= link_to current_user.email, user_path(current_user), class: "login_btn" %>
+      <%= link_to current_user.email, dashboard_url, class: "login_btn" %>
   <% else %>
       <%= link_to t("login"), login_path, class: "login_btn" %>
   <% end %>
@@ -31,7 +31,7 @@
   <p><%= t(".slogan_p3") %></p>
 
   <% if logged_in? %>
-      <%= link_to t("my_account"), user_path(current_user), class: "register_btn" %>
+      <%= link_to t("my_account"), dashboard_url, class: "register_btn" %>
   <% else %>
       <%= link_to t("create_account"), signup_path, class: "register_btn" %>
   <% end %>

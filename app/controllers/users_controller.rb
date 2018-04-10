@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :must_not_logged_in, only: [:new, :create]
+  before_action :must_logged_in, only: [:dashboard]
+
   def index
     redirect_to signup_url
   end
@@ -8,8 +11,8 @@ class UsersController < ApplicationController
     render layout: "signup_login"
   end
 
-  def show
-    @user = User.find(params[:id])
+  def dashboard
+    @user = current_user
   end
 
   def create
@@ -18,7 +21,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Welcome 🎉"
       log_in @user
-      redirect_to @user
+      redirect_to dashboard_url
     else
       render :new, layout: "signup_login"
     end
