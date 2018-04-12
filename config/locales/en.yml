@@ -6,6 +6,8 @@ en:
   my_account: "My Account"
   email_not_found: "Not Found"
   wrong_password: "Wrong"
+  logout: "Logout"
+  help_page: "Helper"
 
   pages:
     welcome:

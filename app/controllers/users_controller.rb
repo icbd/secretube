@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
+    render "dashboard/main"
   end
 
   def create
