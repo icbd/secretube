@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'docker-api', '~> 1.34', '>= 1.34.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

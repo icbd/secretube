@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_form_params)
+    @user.coin = 3600
 
     if @user.save
       flash[:success] = "Welcome 🎉"

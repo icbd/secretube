@@ -18,7 +18,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+        'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -51,4 +51,10 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+
+  # Docker API TLS
+  config.docker_daemon_uri = "https://ss1.hello233world.com:2375"
+  config.docker_daemon_cert_file = "/Users/cbd/.docker/cert.pem"
+  config.docker_daemon_key_file = "/Users/cbd/.docker/key.pem"
 end
