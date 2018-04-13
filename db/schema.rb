@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412075754) do
+ActiveRecord::Schema.define(version: 20180413064515) do
 
   create_table "bills", force: :cascade do |t|
     t.string "docker_id", null: false
@@ -18,6 +18,21 @@ ActiveRecord::Schema.define(version: 20180412075754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_bills_on_user_id"
+  end
+
+  create_table "containers", force: :cascade do |t|
+    t.string "container_id", null: false
+    t.integer "user_id"
+    t.integer "coin", limit: 8
+    t.string "host"
+    t.integer "port"
+    t.string "encryption"
+    t.string "password"
+    t.string "remark"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_containers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
