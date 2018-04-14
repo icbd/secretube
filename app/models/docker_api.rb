@@ -9,24 +9,34 @@ class Net::HTTPResponse
   end
 end
 
+class DockerApiError < StandardError
+end
+
+class DockerApiTimeOutError < DockerApiError
+end
 
 # https://docs.docker.com/engine/api/v1.37
 class DockerApi
 
   def initialize(uri=nil, cert_file=nil, key_file=nil)
     uri = Rails.configuration.docker_daemon_uri unless uri
-    uri = URI.parse(uri)
+    @uri = URI.parse(uri)
 
     cert_file = Rails.configuration.docker_daemon_cert_file unless cert_file
     key_file = Rails.configuration.docker_daemon_key_file unless key_file
 
-    @http = Net::HTTP.new(uri.host, uri.port)
+    @http = Net::HTTP.new(@uri.host, @uri.port)
     @http.use_ssl = true
     @http.cert =OpenSSL::X509::Certificate.new(File.read(cert_file))
     @http.key =OpenSSL::PKey::RSA.new((File.read(key_file)))
     @http.verify_mode = OpenSSL::SSL::VERIFY_NONE # todo VERIFY_PEER
 
     @docker_remote_api_version = '/v1.37'
+  end
+
+  # get host
+  def host
+    @uri.host
   end
 
   def ping
@@ -54,6 +64,10 @@ class DockerApi
                  }
              }
          }
+  end
+
+  def inspect_container(container_id)
+    get "/containers/#{container_id}/json"
   end
 
   def start_container(container_id)

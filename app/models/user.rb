@@ -8,6 +8,12 @@ class User < ApplicationRecord
 
   validates :password, presence: true
 
+  # calc coin balance at that time
+  def coin_balance
+    #todo calc
+    coin
+  end
+
   private
 
   def downcase_email

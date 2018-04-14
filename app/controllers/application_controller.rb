@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include ::ApplicationTools
+  include ::Status
   include SessionsHelper
 
   protect_from_forgery with: :exception
