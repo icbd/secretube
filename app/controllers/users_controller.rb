@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = current_user
+
+    @containers = current_user.containers.where("status = #{Container.statuses[:running]}")
+
     render "dashboard/main"
   end
 

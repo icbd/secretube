@@ -11,6 +11,7 @@ en:
   you_need_more_coins: "Your Need More Coins."
   create_success: "Create Success."
   system_is_too_busy: "System is Too Busy."
+  create_tube: "Create a New Secret Tube"
 
   pages:
     welcome:

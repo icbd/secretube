@@ -9,11 +9,6 @@ class Net::HTTPResponse
   end
 end
 
-class DockerApiError < StandardError
-end
-
-class DockerApiTimeOutError < DockerApiError
-end
 
 # https://docs.docker.com/engine/api/v1.37
 class DockerApi

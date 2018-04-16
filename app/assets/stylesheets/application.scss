@@ -1,6 +1,7 @@
 @import "global";
 @import "bootstrap";
 @import "dashboard";
+@import "font-awesome";
 
 html {
   height: 100%;
@@ -8,4 +9,9 @@ html {
 
 body {
   min-height: 100%;
+  padding-top: 60px;
+}
+
+.btn.disabled {
+  pointer-events: none;
 }

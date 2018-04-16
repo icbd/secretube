@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1 col-md-5">
+      <%= button_to containers_path,
+                    method: :post,
+                    class: "btn btn-block btn-outline-primary",
+                    id: "create_tube",
+                    remote: true do %>
+          <%= fa_icon "plus" %>
+          <%= t("create_tube") %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div id="container_cards" class="col-10 offset-1"><%= render "dashboard/cards" %></div>
+  </div>
+</div>
+
+
+
+<script>
+    $(function () {
+        $("#create_tube").click(function () {
+            $("#create_tube .fa-plus").addClass("fa-pulse");
+            $(this).addClass("disabled"); //with CSS: pointer-events: none;
+        });
+    });
+</script>
