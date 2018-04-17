@@ -13,7 +13,7 @@ class Container < ApplicationRecord
     require 'base64'
     base = Base64.encode64 "#{encryption}:#{password}@#{host}:#{port}"
 
-    "ss://#{base.delete("=")}#Secretube"
+    "ss://#{base.delete("=").delete("\n")}#Secretube"
   end
 
   def short_id

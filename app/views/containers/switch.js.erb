@@ -3,6 +3,15 @@
 $("input#<%= @container.container_id %>").removeClass("disabled");
 console.debug('input#<%= @container.container_id %>');
 
+<% if @turn == "on" # turn on %>
+$("#card-<%= @container.container_id %> code.port").html("<%= @container.port %>");// ? => num
+
+var $qr_img = $('<img />');
+$qr_img.attr("src", '/qr?str=' + "<%= @container.qr_url %>");
+$("#card-<%= @container.container_id %> div.qr").html($qr_img);
+<% end %>
+
+
 <% else %>
 
 $("#modal_container").html("<%= j render("shared/modal_sample", object: t(:fatal_error)) %>");

@@ -54,7 +54,7 @@ class ContainersController < ApplicationController
   # POST
   def switch
     begin
-      turn = params[:turn]
+      @turn = params[:turn]
       @container = Container.find(params[:id])
       if @container.container_id != params[:container_id]
         raise StandardError, t("wrong_params")
@@ -63,15 +63,21 @@ class ContainersController < ApplicationController
       # todo calc fee
 
       remote_api = DockerApi.new
-      if turn == "off"
+      if @turn == "off"
 
         resp = remote_api.stop_container(params[:container_id])
         @container.stopped!
 
-      elsif turn == "on"
+      elsif @turn == "on"
 
         resp = remote_api.start_container(params[:container_id])
-        @container.running!
+
+        # update port
+        container_info = JSON.parse(remote_api.inspect_container(params[:container_id]).body)
+        @container.port = container_info["NetworkSettings"]["Ports"]["8388/tcp"][0].fetch("HostPort").to_i
+        if @container.save
+          @container.running!
+        end
 
       else
         raise StandardError, t("wrong_params")

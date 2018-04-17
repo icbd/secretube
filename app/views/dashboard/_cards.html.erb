@@ -1,6 +1,6 @@
 <% @containers.each do |container| %>
 
-    <div class="card container-card">
+    <div class="card container-card" id="card-<%= container.container_id %>">
       <div class="card-header">
         <span>ID: <%= container.short_id %></span>
 
@@ -28,7 +28,14 @@
 
             <li class="list-group-item">
               <%= t("port") %>:
-              <code class="pull-right"><%= container.port %></code>
+
+              <code class="pull-right port">
+                <% if container.running? %>
+                    <%= container.port %>
+                <% else %>
+                    <%= fa_icon "question-circle" %>
+                <% end %>
+              </code>
             </li>
 
             <li class="list-group-item">
@@ -42,7 +49,11 @@
             </li>
           </ul>
 
-          <div class="qr col-8 offset-2 col-md-4 offset-md-0"><img src="/qr?str=<%= container.qr_url %>"></div>
+          <div class="qr col-8 offset-2 col-md-4 offset-md-0">
+            <% if container.running? %>
+                <img src="/qr?str=<%= container.qr_url %>">
+            <% end %>
+          </div>
 
         </div>
       </div>
@@ -87,18 +98,21 @@
 
         if ($(this).hasClass("checked")) {
             console.debug("turn off");
-            $(this).removeClass("checked");
+            $(this).removeClass("checked");//switch btn
+            $("#card-" + container_id + " code.port").html("<%= j fa_icon "question-circle" %>");// port => ?
+            $("#card-" + container_id + " div.qr").empty();// empty qr img
             ajax_options['data']['turn'] = 'off';
 
         } else {
             console.debug("turn on");
-            $(this).addClass("checked");
+            $(this).addClass("checked");//switch btn
             ajax_options['data']['turn'] = 'on';
         }
 
         console.debug('ajax_options', ajax_options);
         $.ajax(ajax_options);
 
+        // avoid double click switch btn
         // remove disable when callback
         $(this).addClass("disabled");
     });
