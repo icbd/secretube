@@ -1,9 +1,10 @@
 .header {
-  background-color: #cce5ff;
+  background-color: $header_blue;
 
   .logo-text {
     font-weight: bolder;
     font-size: 1.2em;
+    text-decoration: none;
   }
 
   #sm_screen_toggle_btn {
@@ -28,8 +29,13 @@
 
 .container-card {
   margin-top: 20px;
+  margin-bottom: 30px;
+  border: none;
+  box-shadow: 0 0 5px #ccc;
 
   .card-header {
+    border: none;
+    background-color: #eee;
     span {
       height: 36px;
       line-height: 36px;
