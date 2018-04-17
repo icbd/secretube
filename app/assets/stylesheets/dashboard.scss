@@ -28,4 +28,43 @@
 
 .container-card {
   margin-top: 20px;
+
+  .card-header {
+    span {
+      height: 36px;
+      line-height: 36px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .card-header, .card-body, .list-group-item {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  .card-body {
+    @include media-breakpoint-up(md) {
+      .row {
+        justify-content: space-around;
+      }
+    }
+
+    .list-group-item {
+      code {
+        font-family: Monaco, monospace;
+        background-color: #eee;
+        padding: 3px 6px;
+        border-radius: 6px;
+      }
+    }
+  }
+
+  .qr {
+    img {
+      width: 100%;
+      max-width: 210px;
+      height: auto;
+    }
+  }
 }

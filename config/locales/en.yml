@@ -12,6 +12,12 @@ en:
   create_success: "Create Success."
   system_is_too_busy: "System is Too Busy."
   create_tube: "Create a New Secret Tube"
+  addr: "Addr"
+  port: "Port"
+  encryption: "Encryption"
+  wrong_params: "Wrong Parameters"
+  fatal_error: "Fatal Error, Please Email Hello233World@Gmail.com"
+
 
   pages:
     welcome:

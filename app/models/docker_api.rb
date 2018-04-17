@@ -66,12 +66,26 @@ class DockerApi
   end
 
   def start_container(container_id)
-    post "/containers/#{container_id}/start"
+    resp = post "/containers/#{container_id}/start"
+
+    if resp.code[0] != "2"
+      err_msg = (JSON.parse(resp.body).fetch("message") rescue resp.code)
+      raise Exceptions::DockerApiError, err_msg
+    end
+
+    resp
   end
 
   # t: Number of seconds to wait before killing the container
   def stop_container(container_id, t=1)
-    post "/containers/#{container_id}/stop?t=#{t.to_i}"
+    resp = post "/containers/#{container_id}/stop?t=#{t.to_i}"
+
+    if resp.code[0] != "2"
+      err_msg = (JSON.parse(resp.body).fetch("message") rescue resp.code)
+      raise Exceptions::DockerApiError, err_msg
+    end
+
+    resp
   end
 
   def kill_container(container_id)

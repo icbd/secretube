@@ -2,15 +2,59 @@
 
     <div class="card container-card">
       <div class="card-header">
-        TubeID: <%= container.container_id[0, 12] %>
+        <span>ID: <%= container.short_id %></span>
+
+        <div class="switch pull-right">
+          <input
+          type="checkbox"
+          id="<%= container.container_id %>"
+
+          data-id="<%= container.id %>"
+          data-container_id="<%= container.container_id %>"
+          />
+          <label for="<%= container.container_id %>"></label>
+        </div>
+
+
       </div>
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="row">
+
+          <ul class="list-group list-group-flush col-12 col-md-8">
+            <li class="list-group-item">
+              <%= t("addr") %>:
+              <code class="pull-right"><%= container.host %></code>
+            </li>
+
+            <li class="list-group-item">
+              <%= t("port") %>:
+              <code class="pull-right"><%= container.port %></code>
+            </li>
+
+            <li class="list-group-item">
+              <%= t("encryption") %>:
+              <code class="pull-right"><%= container.encryption %></code>
+            </li>
+
+            <li class="list-group-item">
+              <%= t("password") %>:
+              <code class="pull-right"><%= container.password %></code>
+            </li>
+          </ul>
+
+          <div class="qr col-8 offset-2 col-md-4 offset-md-0"><img src="/qr?str=<%= container.qr_url %>"></div>
+
+        </div>
       </div>
     </div>
 
     <div class="w-100"></div>
+
+    <% if container.running? %>
+        <script>
+            // default closed: none of checked
+            $("input#<%= container.container_id %>").addClass("checked");
+        </script>
+    <% end %>
 
 <% end %>

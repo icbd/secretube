@@ -12,7 +12,11 @@ zh:
   create_success: "创建成功."
   system_is_too_busy: "系统繁忙."
   create_tube: "创建一条新的信道"
-
+  addr: "地址"
+  port: "端口"
+  encryption: "加密算法"
+  wrong_params: "参数错误"
+  fatal_error: "致命错误, 请联系 Hello233World@Gmail.com"
 
   pages:
     welcome:

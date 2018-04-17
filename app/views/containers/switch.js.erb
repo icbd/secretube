@@ -1,0 +1,10 @@
+<% if @operate_success %>
+
+$("input#<%= @container.container_id %>").removeClass("disabled");
+console.debug('input#<%= @container.container_id %>');
+
+<% else %>
+
+$("#modal_container").html("<%= j render("shared/modal_sample", object: t(:fatal_error)) %>");
+
+<% end %>

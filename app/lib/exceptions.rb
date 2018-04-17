@@ -5,7 +5,7 @@ module Exceptions
     end
 
     def message
-      @docker_api_error_msg || t("system_is_too_busy")
+      @docker_api_error_msg || I18n.t("system_is_too_busy")
     end
   end
 end

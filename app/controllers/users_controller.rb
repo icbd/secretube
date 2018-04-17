@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
 
-    @containers = current_user.containers.where("status = #{Container.statuses[:running]}")
+    @containers = current_user.containers.where("status != #{Container.statuses[:removed]}")
 
     render "dashboard/main"
   end

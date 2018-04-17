@@ -28,11 +28,11 @@ class ContainersController < ApplicationController
         container.running!
       end
 
-      
+
       respond_to do |format|
         format.json { render json: {s: Status::SUCCESS, c: container.to_json} }
         format.js {
-          @created = true
+          @operate_success = true
           @containers = current_user.containers.where("status = #{Container.statuses[:running]}")
         }
       end
@@ -42,11 +42,72 @@ class ContainersController < ApplicationController
       respond_to do |format|
         format.json { render json: {s: Status::FAILED, c: e.message} }
         format.js {
-          @created = false
+          @operate_success = false
           @hint = e.message
         }
       end
 
     end
   end
+
+
+  # POST
+  def switch
+    begin
+      turn = params[:turn]
+      @container = Container.find(params[:id])
+      if @container.container_id != params[:container_id]
+        raise StandardError, t("wrong_params")
+      end
+
+      # todo calc fee
+
+      remote_api = DockerApi.new
+      if turn == "off"
+
+        resp = remote_api.stop_container(params[:container_id])
+        @container.stopped!
+
+      elsif turn == "on"
+
+        resp = remote_api.start_container(params[:container_id])
+        @container.running!
+
+      else
+        raise StandardError, t("wrong_params")
+      end
+
+      respond_to do |format|
+        format.js {
+          @operate_success = true
+        }
+      end
+
+    rescue StandardError => e
+      flash[:danger] = e.message
+
+      respond_to do |format|
+        format.js {
+          @operate_success = false
+        }
+      end
+    end
+  end
+
+
+  # render a qr image
+  def qr
+    require 'rqrcode'
+    str = params[:str] || ""
+
+    qr = RQRCode::QRCode.new(str)
+
+    qr_img_stream = qr.as_png(
+        border_modules: 2,
+        color: "24292e"
+    ).to_s
+
+    send_data(qr_img_stream, type: 'image/png', disposition: 'inline')
+  end
+
 end

@@ -19,8 +19,13 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   # containers
-  resources :containers
+  resources :containers do
+    collection do
+      post 'switch'
+    end
+  end
 
+  get 'qr', to: 'containers#qr'
 
 
 end
