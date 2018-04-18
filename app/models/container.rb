@@ -1,12 +1,14 @@
 class Container < ApplicationRecord
   belongs_to :user
+  has_many :histories
 
   validates :container_hash, presence: true
 
   enum status: {
-      "running" => 1,
-      "stopped" => 2,
-      "removed" => 3,
+      created: 1,
+      running: 2,
+      stopped: 3,
+      removed: 4,
   }
 
   def qr_url

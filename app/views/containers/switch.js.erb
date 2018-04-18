@@ -14,6 +14,7 @@ $("#card-<%= @container.container_hash %> div.qr").html($qr_img);
 
 <% else %>
 
-$("#modal_container").html("<%= j render("shared/modal_sample", object: t(:fatal_error)) %>");
+$("#container_cards").html("<%=j render("dashboard/cards") %>");
+$("#modal_container").html("<%= j render("shared/modal_sample", object: @hint) %>");
 
 <% end %>

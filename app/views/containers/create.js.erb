@@ -3,11 +3,10 @@ $("#create_tube .fa-plus").removeClass("fa-pulse");
 $("#create_tube").removeClass("disabled");
 
 
-<% if @operate_success == true %>
-
 $("#container_cards").html("<%=j render("dashboard/cards") %>");
 
-<% else %>
+
+<% if @operate_success == false %>
 
 $("#modal_container").html("<%= j render("shared/modal_sample", object: @hint) %>");
 

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :containers
+  has_many :histories
 
   has_secure_password
   before_save :downcase_email

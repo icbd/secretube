@@ -4,7 +4,7 @@ class ContainersController < ApplicationController
   # POST
   def create
     begin
-      raise Exceptions::DockerApiError, t("you_need_more_coins") if current_user.coin_balance < 300
+      raise Exceptions::LackCoinError, t("you_need_more_coins") if current_user.coin_balance < 300
 
       remote_api = DockerApi.new
 
@@ -15,6 +15,7 @@ class ContainersController < ApplicationController
       # full long hash, 64 characters
       container_hash = container.container_hash =
           JSON.parse(remote_api.create_new_container.body).fetch("Id")
+      container.status = :created
 
       remote_api.start_container(container_hash)
 
@@ -25,7 +26,9 @@ class ContainersController < ApplicationController
       container.port = container_info["NetworkSettings"]["Ports"]["8388/tcp"][0].fetch("HostPort").to_i
 
       if container.save
+        History.new(container).save
         container.running!
+        History.new(container).save
       end
 
 
@@ -33,17 +36,45 @@ class ContainersController < ApplicationController
         format.json { render json: {s: Status::SUCCESS, c: container.to_json} }
         format.js {
           @operate_success = true
-          @containers = current_user.containers.where("status = #{Container.statuses[:running]}")
+          @containers =
+              current_user.containers.where(
+                  "status in (?)",
+                  [Container.statuses[:running], Container.statuses[:stopped]]
+              )
         }
       end
 
 
-    rescue StandardError => e
+    rescue Exceptions::LackCoinError => e
+
       respond_to do |format|
         format.json { render json: {s: Status::FAILED, c: e.message} }
         format.js {
           @operate_success = false
           @hint = e.message
+          @containers =
+              current_user.containers.where(
+                  "status in (?)",
+                  [Container.statuses[:running], Container.statuses[:stopped]]
+              )
+        }
+      end
+
+
+    rescue StandardError => e
+
+      logger.error(e.backtrace.to_s)
+
+      respond_to do |format|
+        format.json { render json: {s: Status::FAILED, c: e.message} }
+        format.js {
+          @operate_success = false
+          @hint = e.message
+          @containers =
+              current_user.containers.where(
+                  "status in (?)",
+                  [Container.statuses[:running], Container.statuses[:stopped]]
+              )
         }
       end
 
@@ -67,8 +98,11 @@ class ContainersController < ApplicationController
 
         resp = remote_api.stop_container(params[:container_hash])
         @container.stopped!
+        History.new(@container).save
+
 
       elsif @turn == "on"
+        raise Exceptions::LackCoinError, t("you_need_more_coins") if current_user.coin_balance < 300
 
         resp = remote_api.start_container(params[:container_hash])
 
@@ -77,6 +111,7 @@ class ContainersController < ApplicationController
         @container.port = container_info["NetworkSettings"]["Ports"]["8388/tcp"][0].fetch("HostPort").to_i
         if @container.save
           @container.running!
+          History.new(@container).save
         end
 
       else
@@ -86,15 +121,42 @@ class ContainersController < ApplicationController
       respond_to do |format|
         format.js {
           @operate_success = true
+          @containers =
+              current_user.containers.where(
+                  "status in (?)",
+                  [Container.statuses[:running], Container.statuses[:stopped]]
+              )
+        }
+      end
+
+    rescue Exceptions::LackCoinError => e
+
+      respond_to do |format|
+        format.js {
+          @hint = e.message
+          @operate_success = false
+          @containers =
+              current_user.containers.where(
+                  "status in (?)",
+                  [Container.statuses[:running], Container.statuses[:stopped]]
+              )
         }
       end
 
     rescue StandardError => e
+      logger.error(e.backtrace.to_s)
+
       flash[:danger] = e.message
 
       respond_to do |format|
         format.js {
+          @hint = e.message
           @operate_success = false
+          @containers =
+              current_user.containers.where(
+                  "status in (?)",
+                  [Container.statuses[:running], Container.statuses[:stopped]]
+              )
         }
       end
     end

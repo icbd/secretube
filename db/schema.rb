@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413064515) do
+ActiveRecord::Schema.define(version: 20180418035839) do
 
   create_table "containers", force: :cascade do |t|
     t.string "container_hash", null: false
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20180413064515) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_containers_on_user_id"
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "container_id"
+    t.integer "status"
+    t.text "info"
+    t.integer "timestamp", limit: 8
+    t.index ["container_id"], name: "index_histories_on_container_id"
+    t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
