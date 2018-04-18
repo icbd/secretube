@@ -2,7 +2,7 @@
 
 Powered by Rails, Docker and Shadowsocks .
 
-[结构图](/secretube/doc/secretube.sketch)
+![结构图](/doc/secretube.png)
 
 ## to do list
 
