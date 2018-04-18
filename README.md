@@ -6,6 +6,8 @@ Powered by Rails, Docker and Shadowsocks .
 
 ## to do list
 
+- 余额提示
+
 - 集群支持
 
 - 用户自定义专线
