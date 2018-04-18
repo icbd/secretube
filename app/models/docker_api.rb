@@ -61,12 +61,12 @@ class DockerApi
          }
   end
 
-  def inspect_container(container_id)
-    get "/containers/#{container_id}/json"
+  def inspect_container(container_hash)
+    get "/containers/#{container_hash}/json"
   end
 
-  def start_container(container_id)
-    resp = post "/containers/#{container_id}/start"
+  def start_container(container_hash)
+    resp = post "/containers/#{container_hash}/start"
 
     if resp.code[0] != "2"
       err_msg = (JSON.parse(resp.body).fetch("message") rescue resp.code)
@@ -77,8 +77,8 @@ class DockerApi
   end
 
   # t: Number of seconds to wait before killing the container
-  def stop_container(container_id, t=1)
-    resp = post "/containers/#{container_id}/stop?t=#{t.to_i}"
+  def stop_container(container_hash, t=1)
+    resp = post "/containers/#{container_hash}/stop?t=#{t.to_i}"
 
     if resp.code[0] != "2"
       err_msg = (JSON.parse(resp.body).fetch("message") rescue resp.code)
@@ -88,13 +88,13 @@ class DockerApi
     resp
   end
 
-  def kill_container(container_id)
-    post "/containers/#{container_id}/kill"
+  def kill_container(container_hash)
+    post "/containers/#{container_hash}/kill"
   end
 
   # force remove even through it's running
-  def rm_container(container_id)
-    delete "/containers/#{container_id}?force=true"
+  def rm_container(container_hash)
+    delete "/containers/#{container_hash}?force=true"
   end
 
 

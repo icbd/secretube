@@ -1,14 +1,14 @@
 <% if @operate_success %>
 
-$("input#<%= @container.container_id %>").removeClass("disabled");
-console.debug('input#<%= @container.container_id %>');
+$("input#<%= @container.container_hash %>").removeClass("disabled");
+console.debug('input#<%= @container.container_hash %>');
 
 <% if @turn == "on" # turn on %>
-$("#card-<%= @container.container_id %> code.port").html("<%= @container.port %>");// ? => num
+$("#card-<%= @container.container_hash %> code.port").html("<%= @container.port %>");// ? => num
 
 var $qr_img = $('<img />');
 $qr_img.attr("src", '/qr?str=' + "<%= @container.qr_url %>");
-$("#card-<%= @container.container_id %> div.qr").html($qr_img);
+$("#card-<%= @container.container_hash %> div.qr").html($qr_img);
 <% end %>
 
 

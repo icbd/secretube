@@ -1,7 +1,7 @@
 class Container < ApplicationRecord
   belongs_to :user
 
-  validates :container_id, presence: true
+  validates :container_hash, presence: true
 
   enum status: {
       "running" => 1,
@@ -17,6 +17,6 @@ class Container < ApplicationRecord
   end
 
   def short_id
-    container_id[0, 12]
+    container_hash[0, 12]
   end
 end

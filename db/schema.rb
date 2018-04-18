@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20180413064515) do
 
   create_table "containers", force: :cascade do |t|
-    t.string "container_id", null: false
+    t.string "container_hash", null: false
     t.integer "user_id"
     t.string "host"
     t.integer "port"

@@ -1,7 +1,7 @@
 class CreateContainers < ActiveRecord::Migration[5.1]
   def change
     create_table :containers do |t|
-      t.string :container_id, null: false, comment: "container hash key with full length"
+      t.string :container_hash, null: false, comment: "container hash key with full length"
       t.belongs_to :user, foreign_key: true
 
       t.string :host

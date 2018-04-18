@@ -13,15 +13,15 @@ class ContainersController < ApplicationController
       container.encryption = "aes-256-cfb"
 
       # full long hash, 64 characters
-      container_id = container.container_id =
+      container_hash = container.container_hash =
           JSON.parse(remote_api.create_new_container.body).fetch("Id")
 
-      remote_api.start_container(container_id)
+      remote_api.start_container(container_hash)
 
       # short hash, default password, 12 characters
-      container.password = container_id[0, 12]
+      container.password = container_hash[0, 12]
 
-      container_info = JSON.parse(remote_api.inspect_container(container_id).body)
+      container_info = JSON.parse(remote_api.inspect_container(container_hash).body)
       container.port = container_info["NetworkSettings"]["Ports"]["8388/tcp"][0].fetch("HostPort").to_i
 
       if container.save
@@ -56,7 +56,7 @@ class ContainersController < ApplicationController
     begin
       @turn = params[:turn]
       @container = Container.find(params[:id])
-      if @container.container_id != params[:container_id]
+      if @container.container_hash != params[:container_hash]
         raise StandardError, t("wrong_params")
       end
 
@@ -65,15 +65,15 @@ class ContainersController < ApplicationController
       remote_api = DockerApi.new
       if @turn == "off"
 
-        resp = remote_api.stop_container(params[:container_id])
+        resp = remote_api.stop_container(params[:container_hash])
         @container.stopped!
 
       elsif @turn == "on"
 
-        resp = remote_api.start_container(params[:container_id])
+        resp = remote_api.start_container(params[:container_hash])
 
         # update port
-        container_info = JSON.parse(remote_api.inspect_container(params[:container_id]).body)
+        container_info = JSON.parse(remote_api.inspect_container(params[:container_hash]).body)
         @container.port = container_info["NetworkSettings"]["Ports"]["8388/tcp"][0].fetch("HostPort").to_i
         if @container.save
           @container.running!
