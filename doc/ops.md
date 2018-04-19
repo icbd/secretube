@@ -36,6 +36,7 @@ gem install rails
 
 yum -y install nodejs nginx
 systemctl enable nginx
+npm install yarn -g
 ```
 
 
@@ -44,8 +45,9 @@ mkdir /var/www
 cd /var/www
 git clone https://github.com/icbd/secretube.git
 cd /var/www/secretube
-rails db:create
-rails db:migrate
+RAILS_ENV=production rails db:create
+RAILS_ENV=production rails db:migrate
+RAILS_ENV=production rails assets:precompile
 rails secret
 ```
 
