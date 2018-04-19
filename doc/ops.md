@@ -66,9 +66,9 @@ server {
   root /var/www/secretube/public; # I assume your app is located at this location
 
   location / {
-    proxy_pass http://secretube_tk; # match the name of upstream directive which is defined above
-    proxy_set_header Host $host;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Origin http://$Host;
+    proxy_pass http://secretube_tk;
+    proxy_set_header Host $Host;
   }
 
   location ~* ^/assets/ {
