@@ -4,8 +4,9 @@
       <%= button_to containers_path,
                     method: :post,
                     class: "btn btn-block btn-outline-primary",
-                    id: "create_tube",
-                    remote: true do %>
+                    remote: true,
+                    format: :js,
+                    id: "create_tube" do %>
           <%= fa_icon "plus" %>
           <%= t("create_tube") %>
       <% end %>
