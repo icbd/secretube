@@ -35,6 +35,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 gem 'rqrcode', '~> 0.10.1'
+gem 'js_cookie_rails', '~> 2.1', '>= 2.1.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

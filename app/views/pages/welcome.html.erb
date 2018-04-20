@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= stylesheet_link_tag 'welcome', media: 'all' %>
   <%= favicon_link_tag("logo.png") %>
+  <%= javascript_include_tag 'welcome' %>
 </head>
 <body id="welcome_page">
 
@@ -42,6 +43,12 @@
   <%= image_tag("welcome/safari.png", class: "demo-safari") %>
   <%= image_tag("welcome/iphone.png", class: "demo-iphone") %>
   <%= image_tag("welcome/ipad.png", class: "demo-ipad") %>
+</div>
+
+<div class="bottom-bar">
+  <%= fa_icon "language" %>
+
+  <%= select_tag "language", options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'change_language(this);' %>
 </div>
 </body>
 </html>

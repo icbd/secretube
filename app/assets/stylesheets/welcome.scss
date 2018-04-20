@@ -1,3 +1,4 @@
+@import "font-awesome";
 // precompile separately
 @mixin mobile_size {
   @media (max-width: 767px) {
@@ -206,5 +207,38 @@ body {
   &:hover {
     -webkit-transform: translateY(-1px);
     transform: translateY(-1px);
+  }
+}
+
+.bottom-bar {
+  padding: 20px 0;
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  display: none;
+
+  @include desktop_size {
+    left: 20%;
+    width: 60%;
+  }
+
+  .fa {
+    font-size: 1.5em;
+    margin-right: 5px;
+    vertical-align: text-top;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    padding: 5px 3px 5px 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #bbb;
+    cursor: pointer;
+    background-color: #F8F8F8;
+    overflow: hidden;
   }
 }

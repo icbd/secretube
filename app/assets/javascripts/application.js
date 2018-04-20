@@ -4,6 +4,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+//= stub "welcome.js"
 
 
 $(function () {
