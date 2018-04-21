@@ -1,1 +1,41 @@
 jp:
+  login: "ログイン"
+  password: "パスワード"
+  password_confirmation: "パスワードを確認する"
+  create_account: "登録の経験"
+  my_account: "私のアカウント"
+  email_not_found: "見つからない Email"
+  wrong_password: "間違ったパスワード"
+  logout: "終了する"
+  help_page: "指示"
+  you_need_more_coins: "Coin 十分ではありません"
+  create_success: "作成済み."
+  system_is_too_busy: "システムがビジー状態です."
+  create_tube: "新しいチャンネルを作成する"
+  addr: "Addr"
+  port: "Port"
+  encryption: "暗号化アルゴリズム"
+  wrong_params: "パラメータエラー"
+  fatal_error: "致命的なエラー, お問い合わせください Hello233World@Gmail.com"
+
+  pages:
+    welcome:
+      slogan_h2: "Secretube 暗号化されたチャンネル"
+      slogan_p1: "クライアントの制限なし"
+      slogan_p2: "フロー制限なし"
+      slogan_p3: "毎秒のペイ"
+
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: "Email 不適切な形式"
+              taken: "该 Email 登録済み "
+            password:
+              blank: "パスワードを空にすることはできません"
+              too_long: "パスワードが長すぎます"
+            password_confirmation:
+              confirmation:  "パスワードを確認してください"
